@@ -1,0 +1,7 @@
+*.a
+*.o
+philo/philo
+philo/obj
+philo_bonus/philo_bonus
+philo_bonus/obj
+.vscode/
