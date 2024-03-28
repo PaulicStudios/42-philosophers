@@ -6,7 +6,7 @@
 #    By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 14:55:39 by pgrossma          #+#    #+#              #
-#    Updated: 2024/03/28 17:55:17 by pgrossma         ###   ########.fr        #
+#    Updated: 2024/03/28 20:04:54 by pgrossma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,15 @@ NAME = philo
 
 VPATH	=	src \
 			src/parsing \
-			src/utils
+			src/utils \
+			src/philo
 SRC		=	main.c \
 			parse.c \
 			nbr_utils.c \
-			time_utils.c
+			time_utils.c \
+			actions.c \
+			log.c \
+			routine.c
 OBJDIR	=	obj
 OBJ		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 

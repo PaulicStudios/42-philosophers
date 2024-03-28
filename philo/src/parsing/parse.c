@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/28 17:50:46 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:48:21 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	ft_default_philo(t_philo *philo, t_info *info, unsigned int millis)
 	philo->state = STATE_THINKING;
 	philo->time_last_meal = millis + info->time_to_die;
 	philo->nbr_meals = 0;
+	philo->info = info;
+	if (pthread_mutex_init(&philo->m_fork, NULL) != 0)
+		return ; //ToDo
 }
 
 t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
@@ -66,6 +69,9 @@ t_info	ft_parse_args(int argc, char **argv)
 	info.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		info.needed_meals = ft_atoi(argv[5]);
+	else
+		info.needed_meals = -1;
 	info.first_philo = ft_create_philos(info.nb_philo, &info);
+	info.stop = false;
 	return (info);
 }
