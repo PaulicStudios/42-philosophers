@@ -6,20 +6,25 @@
 #    By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 14:55:39 by pgrossma          #+#    #+#              #
-#    Updated: 2024/03/28 15:01:49 by pgrossma         ###   ########.fr        #
+#    Updated: 2024/03/28 17:55:17 by pgrossma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-VPATH	= src
-SRC		= main.c
-OBJDIR	= obj
-OBJ		= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+VPATH	=	src \
+			src/parsing \
+			src/utils
+SRC		=	main.c \
+			parse.c \
+			nbr_utils.c \
+			time_utils.c
+OBJDIR	=	obj
+OBJ		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
-INC		= -I inc
+CC		=	cc
+CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+INC		=	-I inc
 
 .PHONY: all clean fclean re
 
