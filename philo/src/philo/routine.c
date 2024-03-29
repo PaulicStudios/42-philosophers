@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 16:33:08 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:52:16 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,28 @@ bool	ft_check_dead(t_philo *philo)
 {
 	if (ft_get_millis() >= philo->time_last_meal + philo->info->time_to_die)
 	{
-		ft_log_died(philo);
-		philo->info->stop = true;
-		philo->state = STATE_FINISHED;
+		ft_die(philo);
 		return (true);
 	}
 	return (false);
+}
+
+bool	ft_wait_or_die(unsigned int millis, t_philo *philo)
+{
+	unsigned int	die_time;
+	unsigned int	wait_time;
+	unsigned int	current_time;
+
+	current_time = ft_get_millis();
+	die_time = philo->time_last_meal + philo->info->time_to_die;
+	wait_time = current_time + millis;
+	if (die_time < wait_time)
+	{
+		ft_wait_millis(die_time - current_time);
+		ft_die(philo);
+	}
+	ft_wait_millis(millis);
+	return (true);
 }
 
 void	*ft_philo_loop(void *philo_void)
@@ -37,12 +53,14 @@ void	*ft_philo_loop(void *philo_void)
 			return (NULL);
 		if (philo->state == STATE_THINKING)
 		{
+			// ft_wait_millis(1);
 			if (!ft_take_forks(philo))
 				continue;
 			ft_log_taken_fork(philo);
 			philo->state = STATE_EATING;
 			philo->time_start_eating = ft_get_millis();
 			ft_log_is_eating(philo);
+			ft_wait_or_die(info->time_to_eat, philo);
 		}
 		else if (philo->state == STATE_EATING)
 		{
@@ -58,6 +76,7 @@ void	*ft_philo_loop(void *philo_void)
 			philo->state = STATE_SLEEPING;
 			philo->time_last_meal = ft_get_millis();
 			ft_log_is_sleeping(philo);
+			ft_wait_or_die(info->time_to_sleep, philo);
 		}
 		else if (philo->state == STATE_SLEEPING)
 		{
