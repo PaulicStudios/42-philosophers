@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:11:22 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:16:46 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	ft_free(t_philo *first_philo)
 	t_philo	*next;
 
 	pthread_mutex_destroy(&first_philo->info->m_log);
+	pthread_mutex_destroy(&first_philo->info->m_stop);
 	free(first_philo->info);
 	philo = first_philo;
 	while (philo)
 	{
 		pthread_mutex_destroy(&philo->m_fork);
+		pthread_mutex_destroy(&philo->m_philo);
 		next = philo->next;
 		free(philo);
 		philo = next;
