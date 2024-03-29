@@ -6,13 +6,13 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:29:17 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:51:49 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	ft_wait_or_die(unsigned int time, t_philo *philo)
+bool	ft_die_while_wait(unsigned int time, t_philo *philo)
 {
 	unsigned int	die_time;
 
@@ -21,10 +21,10 @@ bool	ft_wait_or_die(unsigned int time, t_philo *philo)
 	{
 		ft_wait_until(die_time);
 		ft_die(philo);
-		return (false);
+		return (true);
 	}
 	ft_wait_until(time);
-	return (true);
+	return (false);
 }
 
 void	*ft_philo_loop(void *philo_void)
@@ -42,7 +42,6 @@ void	*ft_philo_loop(void *philo_void)
 				return (NULL);
 			usleep(100);
 		}
-		ft_log_taken_fork(philo);
 		if (!ft_eat(philo, info))
 			return (NULL);
 		if (!ft_sleep(philo, info))

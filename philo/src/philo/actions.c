@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:37:02 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:51:46 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	ft_take_forks(t_philo *philo)
 {
 	if (philo->next == philo)
 		return (false);
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(&philo->m_fork);
 		pthread_mutex_lock(&philo->next->m_fork);
@@ -26,6 +26,7 @@ bool	ft_take_forks(t_philo *philo)
 		pthread_mutex_lock(&philo->next->m_fork);
 		pthread_mutex_lock(&philo->m_fork);
 	}
+	ft_log_taken_fork(philo);
 	return (true);
 }
 
@@ -47,12 +48,12 @@ bool	ft_eat(t_philo *philo, t_info *info)
 {
 	unsigned int	wait_time;
 
+	ft_log_is_eating(philo);
 	pthread_mutex_lock(&philo->m_philo);
 	philo->time_start_eating = ft_get_millis();
 	wait_time = philo->time_start_eating + info->time_to_eat;
 	pthread_mutex_unlock(&philo->m_philo);
-	ft_log_is_eating(philo);
-	if (!ft_wait_or_die(wait_time, philo))
+	if (ft_die_while_wait(wait_time, philo))
 	{
 		ft_drop_forks(philo);
 		return (false);
@@ -78,5 +79,5 @@ bool	ft_sleep(t_philo *philo, t_info *info)
 	pthread_mutex_lock(&philo->m_philo);
 	wait_time = philo->time_last_meal + info->time_to_sleep;
 	pthread_mutex_unlock(&philo->m_philo);
-	return (ft_wait_or_die(wait_time, philo));
+	return (!ft_die_while_wait(wait_time, philo));
 }
