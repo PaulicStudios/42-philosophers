@@ -6,7 +6,7 @@
 #    By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 14:55:39 by pgrossma          #+#    #+#              #
-#    Updated: 2024/03/28 20:04:54 by pgrossma         ###   ########.fr        #
+#    Updated: 2024/03/29 15:03:23 by pgrossma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJDIR	=	obj
 OBJ		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 INC		=	-I inc
 
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/28 19:48:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:00:57 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_default_philo(t_philo *philo, t_info *info, unsigned int millis)
 	philo->time_last_meal = millis + info->time_to_die;
 	philo->nbr_meals = 0;
 	philo->info = info;
+	philo->fork_taken = false;
 	if (pthread_mutex_init(&philo->m_fork, NULL) != 0)
 		return ; //ToDo
 }
@@ -53,9 +54,9 @@ t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
 	return (first);
 }
 
-t_info	ft_parse_args(int argc, char **argv)
+t_info	*ft_parse_args(int argc, char **argv)
 {
-	t_info	info;
+	t_info	*info;
 
 	if (argc < 5 || argc > 6)
 	{
@@ -63,15 +64,16 @@ t_info	ft_parse_args(int argc, char **argv)
 		write(2, "Usage: ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_meals]\n", 95);
 		exit(1);
 	}
-	info.nb_philo = ft_atoi(argv[1]);
-	info.time_to_die = ft_atoi(argv[2]);
-	info.time_to_eat = ft_atoi(argv[3]);
-	info.time_to_sleep = ft_atoi(argv[4]);
+	info = malloc(sizeof(t_info));
+	info->nb_philo = ft_atoi(argv[1]);
+	info->time_to_die = ft_atoi(argv[2]);
+	info->time_to_eat = ft_atoi(argv[3]);
+	info->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		info.needed_meals = ft_atoi(argv[5]);
+		info->needed_meals = ft_atoi(argv[5]);
 	else
-		info.needed_meals = -1;
-	info.first_philo = ft_create_philos(info.nb_philo, &info);
-	info.stop = false;
+		info->needed_meals = -1;
+	info->first_philo = ft_create_philos(info->nb_philo, info);
+	info->stop = false;
 	return (info);
 }

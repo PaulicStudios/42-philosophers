@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/28 19:52:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:28:59 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ struct s_philo
 	pthread_t		thread_id;
 	t_philo_state	state;
 	unsigned int	time_start_eating;
-	unsigned int	time_start_sleeping;
 	unsigned int	time_last_meal;
 	int				nbr_meals;
 	bool			fork_taken;
@@ -50,6 +49,7 @@ struct s_philo
 struct s_info
 {
 	bool			stop;
+	unsigned int	time_start;
 	unsigned int	nb_philo;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
@@ -77,7 +77,7 @@ void			ft_log_is_thinking(t_philo *philo);
 void			ft_log_died(t_philo *philo);
 
 //parse.c
-t_info			ft_parse_args(int argc, char **argv);
+t_info			*ft_parse_args(int argc, char **argv);
 
 //utils.c
 int				ft_atoi(const char *str);

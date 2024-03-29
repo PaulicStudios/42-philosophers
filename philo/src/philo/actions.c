@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/28 19:49:08 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:21:17 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ bool	ft_take_forks(t_philo *philo)
 	philo->next->fork_taken = true;
 	pthread_mutex_unlock(&philo->m_fork);
 	pthread_mutex_unlock(&philo->next->m_fork);
-	ft_log_taken_fork(philo);
 	return (true);
 }
 

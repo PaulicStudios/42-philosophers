@@ -6,15 +6,15 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:55:23 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/28 19:06:58 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:07:16 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	ft_print_log(const char *msg, t_philo *philo)
+void	ft_print_log(const char *msg, t_philo *philo)
 {
-	printf("%u %u %s\n", ft_get_millis(), philo->id, msg);
+	printf("%u %u %s\n", (ft_get_millis() - philo->info->time_start), philo->id, msg);
 }
 
 void	ft_log_taken_fork(t_philo *philo)
