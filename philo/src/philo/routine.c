@@ -6,11 +6,23 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:20:20 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:31:48 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+bool	ft_check_dead(t_philo *philo)
+{
+	if (ft_get_millis() >= philo->time_last_meal + philo->info->time_to_die)
+	{
+		ft_log_died(philo);
+		philo->info->stop = true;
+		philo->state = STATE_FINISHED;
+		return (true);
+	}
+	return (false);
+}
 
 void	*ft_philo_loop(void *philo_void)
 {
@@ -21,15 +33,10 @@ void	*ft_philo_loop(void *philo_void)
 	info = philo->info;
 	while (!info->stop && philo->state != STATE_FINISHED)
 	{
+		if (ft_check_dead(philo))
+			return (NULL);
 		if (philo->state == STATE_THINKING)
 		{
-			if (ft_get_millis() >= philo->time_last_meal + info->time_to_die)
-			{
-				ft_log_died(philo);
-				info->stop = true;
-				philo->state = STATE_FINISHED;
-				return (NULL);
-			}
 			if (!ft_take_forks(philo))
 				continue;
 			ft_log_taken_fork(philo);
