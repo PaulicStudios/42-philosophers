@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:32:10 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:13:01 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	ft_default_philo(t_philo *philo, t_info *info, unsigned int millis)
 
 t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
 {
-	t_philo		*first;
-	t_philo 	*prev;
-	t_philo		*philo;
-	unsigned int id;
-	unsigned int millis;
+	t_philo			*first;
+	t_philo 		*prev;
+	t_philo			*philo;
+	unsigned int	id;
+	unsigned int	millis;
 
 	first = NULL;
 	prev = NULL;

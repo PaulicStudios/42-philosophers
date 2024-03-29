@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:31:48 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:07:33 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	ft_start_routines(t_info *info)
 		{
 			ft_error("Faield to create thread", info->first_philo);
 		}
-		pthread_detach(philo->thread_id);
 		philo = philo->next;
 		if (philo == info->first_philo)
 			break;
