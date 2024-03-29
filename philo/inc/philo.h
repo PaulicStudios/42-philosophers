@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 13:28:59 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:17:35 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct s_info
 	unsigned int	time_to_sleep;
 	int				needed_meals;
 	t_philo			*first_philo;
+	pthread_mutex_t	m_log;
 };
 
 

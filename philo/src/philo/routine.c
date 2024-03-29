@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:06:41 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:20:20 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*ft_philo_loop(void *philo_void)
 		{
 			if (ft_get_millis() >= philo->time_last_meal + info->time_to_die)
 			{
+				ft_log_died(philo);
 				info->stop = true;
 				philo->state = STATE_FINISHED;
-				ft_log_died(philo);
 				return (NULL);
 			}
 			if (!ft_take_forks(philo))

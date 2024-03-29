@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:00:57 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:18:05 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ t_info	*ft_parse_args(int argc, char **argv)
 		info->needed_meals = -1;
 	info->first_philo = ft_create_philos(info->nb_philo, info);
 	info->stop = false;
+	if (pthread_mutex_init(&info->m_log, NULL) != 0)
+		ft_error("mutex init failed", info->first_philo);
 	return (info);
 }
