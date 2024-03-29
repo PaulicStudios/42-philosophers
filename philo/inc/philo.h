@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 16:52:33 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:11:57 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int				ft_atoi(const char *str);
 
 //time_utils.c
 unsigned int	ft_get_millis(void);
-void			ft_wait_millis(unsigned int millis);
+void			ft_wait_until(unsigned int time);
 
 #endif
