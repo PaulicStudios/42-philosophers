@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 17:46:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:47:57 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ t_info	*ft_parse_args(int argc, char **argv)
 	{
 		write(2, "Error: wrong number of arguments\n", 34);
 		write(2, "Usage: ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_meals]\n", 95);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	info = malloc(sizeof(t_info));
-	info->nb_philo = ft_atoi(argv[1]);
-	info->time_to_die = ft_atoi(argv[2]);
-	info->time_to_eat = ft_atoi(argv[3]);
-	info->time_to_sleep = ft_atoi(argv[4]);
+	info->nb_philo = ft_input_nbr(argv[1], info);
+	info->time_to_die = ft_input_nbr(argv[2], info);
+	info->time_to_eat = ft_input_nbr(argv[3], info);
+	info->time_to_sleep = ft_input_nbr(argv[4], info);
 	if (argc == 6)
-		info->needed_meals = ft_atoi(argv[5]);
+		info->needed_meals = ft_input_nbr(argv[5], info);
 	else
 		info->needed_meals = -1;
 	info->first_philo = ft_create_philos(info->nb_philo, info);

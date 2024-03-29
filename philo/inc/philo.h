@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 17:45:56 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:48:35 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			ft_log_died(t_philo *philo);
 t_info			*ft_parse_args(int argc, char **argv);
 
 //utils.c
-int				ft_atoi(const char *str);
+unsigned int	ft_input_nbr(const char *str, t_info *info);
 
 //time_utils.c
 unsigned int	ft_get_millis(void);
