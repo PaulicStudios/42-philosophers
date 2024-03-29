@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:55:23 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 16:17:52 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:10:25 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	ft_print_log(const char *msg, t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->m_log);
-	if (!philo->info->stop)
-		printf("%u %u %s\n", (ft_get_millis() - philo->info->time_start), philo->id, msg);
+	printf("%u %u %s\n", (ft_get_millis() - philo->info->time_start), philo->id, msg);
 	pthread_mutex_unlock(&philo->info->m_log);
 }
 

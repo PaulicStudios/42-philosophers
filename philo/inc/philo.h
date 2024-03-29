@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 18:48:35 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:09:21 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ struct s_philo
 	unsigned int	time_last_meal;
 	int				nbr_meals;
 	pthread_mutex_t	m_fork;
+	pthread_mutex_t	m_philo;
 	t_philo			*next;
 	t_philo			*prev;
 	t_info			*info;
@@ -39,6 +40,7 @@ struct s_philo
 struct s_info
 {
 	bool			stop;
+	pthread_mutex_t	m_stop;
 	unsigned int	time_start;
 	unsigned int	nb_philo;
 	unsigned int	time_to_die;
@@ -67,6 +69,9 @@ void			ft_log_is_eating(t_philo *philo);
 void			ft_log_is_sleeping(t_philo *philo);
 void			ft_log_is_thinking(t_philo *philo);
 void			ft_log_died(t_philo *philo);
+
+//infos.c
+bool			ft_check_stop(t_info *info);
 
 //parse.c
 t_info			*ft_parse_args(int argc, char **argv);

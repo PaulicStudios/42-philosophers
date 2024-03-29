@@ -6,7 +6,7 @@
 #    By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 14:55:39 by pgrossma          #+#    #+#              #
-#    Updated: 2024/03/29 16:04:47 by pgrossma         ###   ########.fr        #
+#    Updated: 2024/03/29 19:12:09 by pgrossma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC		=	main.c \
 			time_utils.c \
 			actions.c \
 			log.c \
-			routine.c
+			routine.c \
+			infos.c
 OBJDIR	=	obj
 OBJ		=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 

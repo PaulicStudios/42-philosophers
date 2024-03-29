@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 18:23:51 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:09:44 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*ft_philo_loop(void *philo_void)
 
 	philo = (t_philo *) philo_void;
 	info = philo->info;
-	while (!info->stop)
+	while (!ft_check_stop(info))
 	{
 		while (!ft_take_forks(philo))
 		{
