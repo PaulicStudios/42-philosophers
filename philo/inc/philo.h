@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 15:17:35 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:28:16 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ struct s_philo
 	unsigned int	time_start_eating;
 	unsigned int	time_last_meal;
 	int				nbr_meals;
-	bool			fork_taken;
 	pthread_mutex_t	m_fork;
 	t_philo			*next;
 	t_philo			*prev;
