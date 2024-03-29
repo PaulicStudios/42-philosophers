@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 18:15:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:23:51 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	*ft_philo_loop(void *philo_void)
 		philo->time_start_eating = ft_get_millis();
 		ft_log_is_eating(philo);
 		if (!ft_wait_or_die(philo->time_start_eating + info->time_to_eat, philo))
+		{
+			ft_drop_forks(philo);
 			return (NULL);
+		}
 		ft_drop_forks(philo);
 		philo->nbr_meals++;
 		if (info->needed_meals != -1 && philo->nbr_meals == info->needed_meals)
