@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:15:44 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:37:02 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,42 @@ void	ft_die(t_philo *philo)
 	pthread_mutex_lock(&philo->info->m_stop);
 	philo->info->stop = true;
 	pthread_mutex_unlock(&philo->info->m_stop);
+}
+
+bool	ft_eat(t_philo *philo, t_info *info)
+{
+	unsigned int	wait_time;
+
+	pthread_mutex_lock(&philo->m_philo);
+	philo->time_start_eating = ft_get_millis();
+	wait_time = philo->time_start_eating + info->time_to_eat;
+	pthread_mutex_unlock(&philo->m_philo);
+	ft_log_is_eating(philo);
+	if (!ft_wait_or_die(wait_time, philo))
+	{
+		ft_drop_forks(philo);
+		return (false);
+	}
+	ft_drop_forks(philo);
+	pthread_mutex_lock(&philo->m_philo);
+	philo->nbr_meals++;
+	if (info->needed_meals != -1 && philo->nbr_meals == info->needed_meals)
+	{
+		pthread_mutex_unlock(&philo->m_philo);
+		return (false);
+	}
+	philo->time_last_meal = ft_get_millis();
+	pthread_mutex_unlock(&philo->m_philo);
+	return (true);
+}
+
+bool	ft_sleep(t_philo *philo, t_info *info)
+{
+	unsigned int	wait_time;
+
+	ft_log_is_sleeping(philo);
+	pthread_mutex_lock(&philo->m_philo);
+	wait_time = philo->time_last_meal + info->time_to_sleep;
+	pthread_mutex_unlock(&philo->m_philo);
+	return (ft_wait_or_die(wait_time, philo));
 }

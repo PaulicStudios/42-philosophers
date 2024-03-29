@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:09:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:29:52 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ void			ft_error(char *msg, t_philo *first_philo);
 
 //routine.c
 void			ft_start_routines(t_info *info);
+bool			ft_wait_or_die(unsigned int time, t_philo *philo);
 
 //actions.c
 bool			ft_take_forks(t_philo *philo);
 void			ft_drop_forks(t_philo *philo);
 void			ft_die(t_philo *philo);
+bool			ft_eat(t_philo *philo, t_info *info);
+bool			ft_sleep(t_philo *philo, t_info *info);
 
 //log.c
 void			ft_log_taken_fork(t_philo *philo);
@@ -72,6 +75,7 @@ void			ft_log_died(t_philo *philo);
 
 //infos.c
 bool			ft_check_stop(t_info *info);
+bool			ft_check_dead(t_philo *philo);
 
 //parse.c
 t_info			*ft_parse_args(int argc, char **argv);

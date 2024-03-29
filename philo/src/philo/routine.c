@@ -6,21 +6,11 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:09:44 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:29:17 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-bool	ft_check_dead(t_philo *philo)
-{
-	if (ft_get_millis() >= philo->time_last_meal + philo->info->time_to_die)
-	{
-		ft_die(philo);
-		return (true);
-	}
-	return (false);
-}
 
 bool	ft_wait_or_die(unsigned int time, t_philo *philo)
 {
@@ -53,20 +43,9 @@ void	*ft_philo_loop(void *philo_void)
 			usleep(100);
 		}
 		ft_log_taken_fork(philo);
-		philo->time_start_eating = ft_get_millis();
-		ft_log_is_eating(philo);
-		if (!ft_wait_or_die(philo->time_start_eating + info->time_to_eat, philo))
-		{
-			ft_drop_forks(philo);
+		if (!ft_eat(philo, info))
 			return (NULL);
-		}
-		ft_drop_forks(philo);
-		philo->nbr_meals++;
-		if (info->needed_meals != -1 && philo->nbr_meals == info->needed_meals)
-			return (NULL);
-		philo->time_last_meal = ft_get_millis();
-		ft_log_is_sleeping(philo);
-		if (!ft_wait_or_die(philo->time_last_meal + info->time_to_sleep, philo))
+		if (!ft_sleep(philo, info))
 			return (NULL);
 		ft_log_is_thinking(philo);
 	}
