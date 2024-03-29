@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 17:36:38 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 17:26:26 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:13:12 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,9 @@ void	ft_wait_until(unsigned int time)
 		if (current_time >= time)
 			break ;
 		diff_time = (time - current_time) * 1000;
-		if (diff_time > 100)
-			usleep(diff_time);
-		else
+		if (diff_time < 5000)
 			usleep(100);
+		else
+			usleep(diff_time * 0.9);
 	}
-	// while (ft_get_millis() < time)
-	// {
-	// 	usleep(100);
-	// }
 }

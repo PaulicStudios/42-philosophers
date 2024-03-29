@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 17:11:57 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:45:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@
 # include <pthread.h>
 # include <stdbool.h>
 
-typedef enum e_philo_state
-{
-	STATE_EATING,
-	STATE_SLEEPING,
-	STATE_THINKING,
-	STATE_FINISHED
-}	t_philo_state;
-
 typedef struct s_philo t_philo;
 typedef struct s_info t_info;
 
@@ -35,7 +27,6 @@ struct s_philo
 {
 	unsigned int	id;
 	pthread_t		thread_id;
-	t_philo_state	state;
 	unsigned int	time_start_eating;
 	unsigned int	time_last_meal;
 	int				nbr_meals;

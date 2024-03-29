@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 16:28:40 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:46:56 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_default_philo(t_philo *philo, t_info *info, unsigned int millis)
 {
-	philo->state = STATE_THINKING;
 	philo->time_last_meal = millis;
 	philo->nbr_meals = 0;
 	philo->info = info;

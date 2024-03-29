@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 16:20:13 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:46:40 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	ft_check_finished(t_philo *first_philo)
 	philo = first_philo;
 	while (philo)
 	{
-		if (philo->state != STATE_FINISHED)
+		if (philo->nbr_meals != -1 && philo->nbr_meals < philo->info->needed_meals)
 			return (false);
 		philo = philo->next;
 		if (philo == first_philo)
