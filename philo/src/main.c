@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:29:01 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:36:08 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	main(int argc, char **argv)
 	{
 		usleep(100);
 	}
+	ft_stop(info);
 	ft_join_threads(info->first_philo);
 	ft_free(info->first_philo);
 	return (0);
