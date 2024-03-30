@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 19:17:16 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:48:43 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_default_philo(t_philo *philo, t_info *info, unsigned int millis)
 	philo->time_last_meal = millis;
 	philo->nbr_meals = 0;
 	philo->info = info;
+	philo->is_allowed_to_eat = false;
+	philo->ate = false;
 	if (pthread_mutex_init(&philo->m_fork, NULL) != 0)
 		ft_error("mutex init failed", info->first_philo);
 	if (pthread_mutex_init(&philo->m_philo, NULL) != 0)

@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 20:35:15 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:48:22 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,23 @@ bool	ft_take_forks(t_philo *philo)
 {
 	if (philo->next == philo)
 		return (false);
-	if (philo->id % 2 != 0)
+	pthread_mutex_lock(&philo->m_fork);
+	if (!philo->is_allowed_to_eat)
 	{
-		pthread_mutex_lock(&philo->m_fork);
-		pthread_mutex_lock(&philo->next->m_fork);
+		pthread_mutex_unlock(&philo->m_fork);
+		return (false);
 	}
-	else
-	{
-		pthread_mutex_lock(&philo->next->m_fork);
-		pthread_mutex_lock(&philo->m_fork);
-	}
+	pthread_mutex_unlock(&philo->m_fork);
 	ft_log_taken_fork(philo);
 	return (true);
 }
 
 void	ft_drop_forks(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->m_fork);
+	philo->is_allowed_to_eat = false;
+	philo->ate = true;
 	pthread_mutex_unlock(&philo->m_fork);
-	pthread_mutex_unlock(&philo->next->m_fork);
 }
 
 void	ft_die(t_philo *philo)
