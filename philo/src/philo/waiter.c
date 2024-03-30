@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:06:26 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:26:45 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:33:08 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*ft_waiter(void *info_void)
 		while (!ft_all_ate(info->first_philo))
 		{
 			if (ft_check_stop(info))
-				return(NULL);
+				return (NULL);
 			usleep(100);
 		}
 		ft_next_eat_round(info->first_philo);

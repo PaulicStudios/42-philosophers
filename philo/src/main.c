@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:01:40 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:29:01 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ bool	ft_check_finished(t_philo *first_philo)
 	while (philo)
 	{
 		pthread_mutex_lock(&philo->m_philo);
-		if (philo->nbr_meals != -1 && philo->nbr_meals < philo->info->needed_meals)
+		if (philo->nbr_meals != -1
+			&& philo->nbr_meals < philo->info->needed_meals)
 		{
 			pthread_mutex_unlock(&philo->m_philo);
 			return (false);

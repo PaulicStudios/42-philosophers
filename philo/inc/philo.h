@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:22:21 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:32:46 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <pthread.h>
 # include <stdbool.h>
 
-typedef struct s_philo t_philo;
-typedef struct s_info t_info;
+typedef struct s_philo	t_philo;
+typedef struct s_info	t_info;
 
 struct s_philo
 {
@@ -54,7 +54,6 @@ struct s_info
 	pthread_t		waiter_id;
 };
 
-
 //main.c
 void			ft_error(char *msg, t_philo *first_philo);
 
@@ -72,7 +71,7 @@ void			ft_die(t_philo *philo);
 bool			ft_eat(t_philo *philo, t_info *info);
 bool			ft_sleep(t_philo *philo, t_info *info);
 
-//log.c
+//log_wrapper.c
 void			ft_log_taken_fork(t_philo *philo);
 void			ft_log_is_eating(t_philo *philo);
 void			ft_log_is_sleeping(t_philo *philo);

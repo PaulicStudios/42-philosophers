@@ -6,15 +6,16 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:20:28 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:20:45 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:29:35 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo	*ft_default_philo(t_info *info, t_philo **first, t_philo **prev, unsigned int millis)
+t_philo	*ft_default_philo(t_info *info, t_philo **first,
+							t_philo **prev, unsigned int millis)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = malloc(sizeof(t_philo));
 	if (!*first)
@@ -39,7 +40,7 @@ t_philo	*ft_default_philo(t_info *info, t_philo **first, t_philo **prev, unsigne
 t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
 {
 	t_philo			*first;
-	t_philo 		*prev;
+	t_philo			*prev;
 	t_philo			*philo;
 	unsigned int	id;
 	unsigned int	millis;
