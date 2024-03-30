@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 20:49:41 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:15:06 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ft_free(t_philo *first_philo)
 	}
 }
 
-void	ft_error(char *msg, t_philo *first_philo)
+bool	ft_error(char *msg, t_philo *first_philo)
 {
 	ft_free(first_philo);
 	printf("Error: %s\n", msg);
-	exit(1);
+	return (false);
 }
 
 bool	ft_check_finished(t_philo *philo)
@@ -81,7 +81,10 @@ int	main(int argc, char **argv)
 	t_info	*info;
 
 	info = ft_parse_args(argc, argv);
-	ft_start_routines(info);
+	if (!info)
+		return (1);
+	if (!ft_start_routines(info))
+		return (1);
 	while (!ft_check_stop(info) && !ft_check_finished(info->first_philo))
 	{
 		usleep(100);

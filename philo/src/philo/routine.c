@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 20:07:42 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:15:30 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*ft_philo_loop(void *philo_void)
 	return (NULL);
 }
 
-void	ft_start_routines(t_info *info)
+bool	ft_start_routines(t_info *info)
 {
 	t_philo			*philo;
 
@@ -62,10 +62,11 @@ void	ft_start_routines(t_info *info)
 	{
 		if (pthread_create(&philo->thread_id, NULL, ft_philo_loop, philo) != 0)
 		{
-			ft_error("Faield to create thread", info->first_philo);
+			return (ft_error("Faield to create thread", info->first_philo));
 		}
 		philo = philo->next;
 		if (philo == info->first_philo)
 			break ;
 	}
+	return (true);
 }

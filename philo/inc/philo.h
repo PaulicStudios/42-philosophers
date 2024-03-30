@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:34:02 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:15:49 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ struct s_info
 };
 
 //main.c
-void			ft_error(char *msg, t_philo *first_philo);
+bool			ft_error(char *msg, t_philo *first_philo);
 
 //routine.c
-void			ft_start_routines(t_info *info);
+bool			ft_start_routines(t_info *info);
 bool			ft_wait_and_die(unsigned int time, t_philo *philo);
 
 //waiter.c
-void			ft_start_waiter(t_info *info);
+bool			ft_start_waiter(t_info *info);
 
 //actions.c
 bool			ft_take_forks(t_philo *philo);

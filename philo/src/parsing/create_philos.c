@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:20:28 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:29:35 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:18:09 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_philo	*ft_default_philo(t_info *info, t_philo **first,
 	if (!*first)
 		*first = philo;
 	if (!philo)
-		ft_error("malloc failed", *first);
+		return (ft_error("malloc failed", *first), NULL);
 	if (*prev)
 		(*prev)->next = philo;
 	philo->time_last_meal = millis;
@@ -30,9 +30,9 @@ t_philo	*ft_default_philo(t_info *info, t_philo **first,
 	philo->is_allowed_to_eat = false;
 	philo->ate = false;
 	if (pthread_mutex_init(&philo->m_fork, NULL) != 0)
-		ft_error("mutex init failed", info->first_philo);
+		return (ft_error("mutex init failed", info->first_philo), NULL);
 	if (pthread_mutex_init(&philo->m_philo, NULL) != 0)
-		ft_error("mutex init failed", info->first_philo);
+		return (ft_error("mutex init failed", info->first_philo), NULL);
 	philo->prev = *prev;
 	return (philo);
 }
@@ -52,6 +52,8 @@ t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
 	while (id++ < nb_philo)
 	{
 		philo = ft_default_philo(info, &first, &prev, millis);
+		if (!philo)
+			return (NULL);
 		philo->id = id;
 		prev = philo;
 	}

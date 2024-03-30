@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:06:26 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 20:47:41 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:17:48 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,13 @@ void	*ft_waiter(void *info_void)
 	return (NULL);
 }
 
-void	ft_start_waiter(t_info *info)
+bool	ft_start_waiter(t_info *info)
 {
 	if (info->nb_philo == 1)
-		return ;
+		return (true);
 	if (pthread_create(&info->waiter_id, NULL, ft_waiter, info) != 0)
 	{
-		ft_error("Failed to create waiter thread", info->first_philo);
+		return (ft_error("Failed to create waiter thread", info->first_philo));
 	}
+	return (true);
 }
