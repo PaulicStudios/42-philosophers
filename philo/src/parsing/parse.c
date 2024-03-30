@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 21:14:29 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:24:14 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ bool	ft_check_argc(int argc)
 	if (argc < 5 || argc > 6)
 	{
 		write(2, "Error: wrong number of arguments\n", 34);
-		write(2, "Usage: ./philo number_of_philosophers time_to_die time_to_eat \
-				time_to_sleep [number_of_meals]\n", 95);
+		write(2, "Usage: ./philo number_of_philosophers time_to_die "
+			"time_to_eat time_to_sleep [number_of_meals]\n", 95);
 		return (false);
 	}
 	return (true);
