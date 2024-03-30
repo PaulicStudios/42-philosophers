@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:10:24 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 20:16:30 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ bool	ft_eat(t_philo *philo, t_info *info)
 	ft_drop_forks(philo);
 	pthread_mutex_lock(&philo->m_philo);
 	philo->nbr_meals++;
-	if (info->needed_meals != -1 && philo->nbr_meals == info->needed_meals)
-	{
-		pthread_mutex_unlock(&philo->m_philo);
-		return (false);
-	}
 	philo->time_last_meal = ft_get_millis();
 	pthread_mutex_unlock(&philo->m_philo);
 	return (true);
