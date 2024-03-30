@@ -6,13 +6,13 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 18:56:00 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:09:16 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	ft_die_while_wait(unsigned int time, t_philo *philo)
+bool	ft_wait_and_die(unsigned int time, t_philo *philo)
 {
 	unsigned int	die_time;
 

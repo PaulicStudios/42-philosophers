@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:39 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 18:48:22 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:10:24 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	ft_drop_forks(t_philo *philo)
 void	ft_die(t_philo *philo)
 {
 	ft_log_died(philo);
-	pthread_mutex_lock(&philo->info->m_stop);
-	philo->info->stop = true;
-	pthread_mutex_unlock(&philo->info->m_stop);
+	ft_stop(philo->info);
 }
 
 bool	ft_eat(t_philo *philo, t_info *info)
@@ -52,7 +50,7 @@ bool	ft_eat(t_philo *philo, t_info *info)
 	philo->time_start_eating = ft_get_millis();
 	wait_time = philo->time_start_eating + info->time_to_eat;
 	pthread_mutex_unlock(&philo->m_philo);
-	if (ft_die_while_wait(wait_time, philo))
+	if (ft_wait_and_die(wait_time, philo))
 	{
 		ft_drop_forks(philo);
 		return (false);
@@ -78,5 +76,5 @@ bool	ft_sleep(t_philo *philo, t_info *info)
 	pthread_mutex_lock(&philo->m_philo);
 	wait_time = philo->time_last_meal + info->time_to_sleep;
 	pthread_mutex_unlock(&philo->m_philo);
-	return (!ft_die_while_wait(wait_time, philo));
+	return (!ft_wait_and_die(wait_time, philo));
 }

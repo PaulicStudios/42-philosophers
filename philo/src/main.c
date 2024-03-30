@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/29 20:25:16 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:01:40 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_join_threads(t_philo *first_philo)
 		if (philo == first_philo)
 			break ;
 	}
+	pthread_join(first_philo->info->waiter_id, NULL);
 }
 
 int	main(int argc, char **argv)
@@ -80,25 +81,7 @@ int	main(int argc, char **argv)
 	t_info	*info;
 
 	info = ft_parse_args(argc, argv);
-	// t_philo	*philo = info.first_philo;
-	// while (philo)
-	// {
-	// 	printf("philo %d\n", philo->id);
-	// 	printf("state: %d\n", philo->state);
-	// 	printf("time_last_meal: %u\n", philo->time_last_meal);
-	// 	printf("nbr_meals: %d\n", philo->nbr_meals);
-	// 	philo = philo->next;
-	// 	if (philo == info.first_philo)
-	// 		break ;
-	// }
-	// printf("nb_philo: %u\n", info.nb_philo);
-	// printf("time_to_die: %u\n", info.time_to_die);
-	// printf("time_to_eat: %u\n", info.time_to_eat);
-	// printf("time_to_sleep: %u\n", info.time_to_sleep);
-	// printf("needed_meals: %d\n", info.needed_meals);
-
 	ft_start_routines(info);
-
 	while (!ft_check_stop(info) && !ft_check_finished(info->first_philo))
 	{
 		usleep(100);

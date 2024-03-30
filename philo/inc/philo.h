@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 18:54:49 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:22:21 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			ft_error(char *msg, t_philo *first_philo);
 
 //routine.c
 void			ft_start_routines(t_info *info);
-bool			ft_die_while_wait(unsigned int time, t_philo *philo);
+bool			ft_wait_and_die(unsigned int time, t_philo *philo);
 
 //waiter.c
 void			ft_start_waiter(t_info *info);
@@ -79,12 +79,15 @@ void			ft_log_is_sleeping(t_philo *philo);
 void			ft_log_is_thinking(t_philo *philo);
 void			ft_log_died(t_philo *philo);
 
-//infos.c
+//checks.c
 bool			ft_check_stop(t_info *info);
 bool			ft_check_dead(t_philo *philo);
 
 //parse.c
 t_info			*ft_parse_args(int argc, char **argv);
+
+//create_philos.c
+t_philo			*ft_create_philos(unsigned int nb_philo, t_info *info);
 
 //utils.c
 unsigned int	ft_input_nbr(const char *str, t_info *info);
@@ -92,5 +95,8 @@ unsigned int	ft_input_nbr(const char *str, t_info *info);
 //time_utils.c
 unsigned int	ft_get_millis(void);
 void			ft_wait_until(unsigned int time);
+
+//action_utils.c
+void			ft_stop(t_info *info);
 
 #endif

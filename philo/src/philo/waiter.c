@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:06:26 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 18:56:36 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:26:45 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,8 @@ bool	ft_all_ate(t_philo *philo)
 	return (true);
 }
 
-void	*ft_waiter(void *info_void)
+void	ft_start_even(t_philo *philo)
 {
-	t_info	*info;
-	t_philo	*philo;
-
-	info = (t_info *)info_void;
-	philo = info->first_philo;
 	while (philo)
 	{
 		if (philo->id % 2 == 0)
@@ -46,33 +41,45 @@ void	*ft_waiter(void *info_void)
 			pthread_mutex_unlock(&philo->m_fork);
 		}
 		philo = philo->next;
-		if (philo == info->first_philo)
+		if (philo == philo->info->first_philo)
 			break ;
 	}
+}
+
+void	ft_next_eat_round(t_philo *philo)
+{
+	while (philo)
+	{
+		if (philo->ate)
+		{
+			pthread_mutex_lock(&philo->m_fork);
+			pthread_mutex_lock(&philo->next->m_fork);
+			philo->ate = false;
+			philo->next->is_allowed_to_eat = true;
+			pthread_mutex_unlock(&philo->m_fork);
+			pthread_mutex_unlock(&philo->next->m_fork);
+		}
+		philo = philo->next;
+		if (philo == philo->info->first_philo)
+			break ;
+	}
+}
+
+void	*ft_waiter(void *info_void)
+{
+	t_info	*info;
+
+	info = (t_info *)info_void;
+	ft_start_even(info->first_philo);
 	while (!ft_check_stop(info))
 	{
-		while (!ft_all_ate(philo))
+		while (!ft_all_ate(info->first_philo))
 		{
 			if (ft_check_stop(info))
 				return(NULL);
 			usleep(100);
 		}
-		philo = info->first_philo;
-		while (philo)
-		{
-			if (philo->ate)
-			{
-				pthread_mutex_lock(&philo->m_fork);
-				pthread_mutex_lock(&philo->next->m_fork);
-				philo->ate = false;
-				philo->next->is_allowed_to_eat = true;
-				pthread_mutex_unlock(&philo->m_fork);
-				pthread_mutex_unlock(&philo->next->m_fork);
-			}
-			philo = philo->next;
-			if (philo == info->first_philo)
-				break ;
-		}
+		ft_next_eat_round(info->first_philo);
 	}
 	return (NULL);
 }
