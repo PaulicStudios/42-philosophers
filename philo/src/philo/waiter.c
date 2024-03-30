@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 17:06:26 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:38:54 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 20:47:41 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ void	ft_next_eat_round(t_philo *philo)
 {
 	while (philo)
 	{
+		pthread_mutex_lock(&philo->m_fork);
 		if (philo->ate)
 		{
-			pthread_mutex_lock(&philo->m_fork);
-			pthread_mutex_lock(&philo->next->m_fork);
 			philo->ate = false;
-			philo->next->is_allowed_to_eat = true;
 			pthread_mutex_unlock(&philo->m_fork);
+			pthread_mutex_lock(&philo->next->m_fork);
+			philo->next->is_allowed_to_eat = true;
 			pthread_mutex_unlock(&philo->next->m_fork);
 		}
+		else
+			pthread_mutex_unlock(&philo->m_fork);
 		philo = philo->next;
 		if (philo == philo->info->first_philo)
 			break ;
@@ -86,6 +88,8 @@ void	*ft_waiter(void *info_void)
 
 void	ft_start_waiter(t_info *info)
 {
+	if (info->nb_philo == 1)
+		return ;
 	if (pthread_create(&info->waiter_id, NULL, ft_waiter, info) != 0)
 	{
 		ft_error("Failed to create waiter thread", info->first_philo);
