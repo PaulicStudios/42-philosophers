@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 20:22:47 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 20:49:41 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	ft_join_threads(t_philo *first_philo)
 		if (philo == first_philo)
 			break ;
 	}
-	pthread_join(first_philo->info->waiter_id, NULL);
+	if (first_philo->info->nb_philo > 1)
+		pthread_join(first_philo->info->waiter_id, NULL);
 }
 
 int	main(int argc, char **argv)
