@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 19:32:46 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:34:02 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void			ft_drop_forks(t_philo *philo);
 void			ft_die(t_philo *philo);
 bool			ft_eat(t_philo *philo, t_info *info);
 bool			ft_sleep(t_philo *philo, t_info *info);
+
+//log.c
+void			ft_print_log(const char *msg, t_philo *philo);
 
 //log_wrapper.c
 void			ft_log_taken_fork(t_philo *philo);
