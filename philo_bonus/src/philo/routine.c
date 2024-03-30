@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 22:33:53 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 22:52:43 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ bool	ft_start_routines(t_info *info)
 		if (philo == info->first_philo)
 			break ;
 	}
+	ft_start_monitor_threads(info->first_philo);
 	return (true);
 }

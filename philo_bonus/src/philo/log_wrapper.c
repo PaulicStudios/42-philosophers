@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:32:13 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 21:33:34 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/30 23:12:17 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	ft_log_taken_fork(t_philo *philo)
 {
-	ft_print_log("has taken a fork", philo);
+	ft_print_log("has taken a fork", philo, false);
 }
 
 void	ft_log_is_eating(t_philo *philo)
 {
-	ft_print_log("is eating", philo);
+	ft_print_log("is eating", philo, false);
 }
 
 void	ft_log_is_sleeping(t_philo *philo)
 {
-	ft_print_log("is sleeping", philo);
+	ft_print_log("is sleeping", philo, false);
 }
 
 void	ft_log_is_thinking(t_philo *philo)
 {
-	ft_print_log("is thinking", philo);
+	ft_print_log("is thinking", philo, false);
 }
 
 void	ft_log_died(t_philo *philo)
 {
-	ft_print_log("died", philo);
+	ft_print_log("died", philo, true);
 }
