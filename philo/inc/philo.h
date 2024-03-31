@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 21:15:49 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:58:08 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_info			*ft_parse_args(int argc, char **argv);
 t_philo			*ft_create_philos(unsigned int nb_philo, t_info *info);
 
 //utils.c
-unsigned int	ft_input_nbr(const char *str, t_info *info);
+int				ft_input_nbr(const char *str, t_info *info);
 
 //time_utils.c
 unsigned int	ft_get_millis(void);
