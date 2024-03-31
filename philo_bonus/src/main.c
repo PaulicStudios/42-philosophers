@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 17:28:01 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:30:52 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	ft_free(t_philo *first_philo)
 	}
 	sem_unlink("sem_forks");
 	sem_unlink("sem_log");
+	sem_unlink("sem_stop");
 	sem_close(info->sem_forks);
 	sem_close(info->sem_log);
+	sem_close(info->sem_stop);
 	free(info);
 }
 
