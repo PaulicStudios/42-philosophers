@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 12:14:07 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 21:15:49 by pgrossma         ###   ########.fr       */
+/*   Created: 2024/03/31 18:00:00 by pgrossma          #+#    #+#             */
+/*   Updated: 2024/03/31 18:00:32 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -68,7 +68,7 @@ bool			ft_start_routines(t_info *info);
 bool			ft_wait_and_die(unsigned int time, t_philo *philo);
 
 //monitor.c
-void			 ft_start_monitor_threads(t_philo *philo);
+void			ft_start_monitor_threads(t_philo *philo);
 
 //actions.c
 bool			ft_take_forks(t_philo *philo);

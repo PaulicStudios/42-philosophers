@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 22:42:41 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 17:16:45 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 18:06:25 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,15 @@ void	*ft_monitor_alive(void *philo_void)
 	return (NULL);
 }
 
-void ft_start_monitor_threads(t_philo *philo)
+void	ft_start_monitor_threads(t_philo *philo)
 {
 	while (philo)
 	{
-		if (pthread_create(&philo->monitor_alive_thread, NULL, ft_monitor_alive, philo) != 0)
+		if (pthread_create(&philo->monitor_alive_thread,
+				NULL, ft_monitor_alive, philo) != 0)
 			ft_error_exit("pthread_create failed", philo);
-		if (pthread_create(&philo->monitor_meals_thread, NULL, ft_monitor_meals, philo) != 0)
+		if (pthread_create(&philo->monitor_meals_thread,
+				NULL, ft_monitor_meals, philo) != 0)
 			ft_error_exit("pthread_create failed", philo);
 		philo = philo->next;
 		if (philo == philo->info->first_philo)
