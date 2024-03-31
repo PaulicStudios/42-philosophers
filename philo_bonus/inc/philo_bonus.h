@@ -113,4 +113,9 @@ void			ft_stop(t_philo *philo, int exit_status);
 //ft_itoa.c
 char			*ft_itoa(int n);
 
+//exit_utils.c
+void			ft_free(t_philo *first_philo);
+bool			ft_error(char *msg, t_philo *first_philo);
+void			ft_error_exit(char *msg, t_philo *first_philo);
+
 #endif
