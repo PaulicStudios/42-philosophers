@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:20:28 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 17:18:42 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:27:29 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_init_philo_sem_meals(t_philo *philo)
 {
 	char	*sem_name;
 
-	sem_name = ft_strjoin("sem_philo_", ft_itoa(philo->id));
+	sem_name = ft_philo_sem_meals_name(philo->id);
 	sem_unlink(sem_name);
 	philo->sem_meals = sem_open(sem_name, O_CREAT, 0644, 2);
 	free(sem_name);

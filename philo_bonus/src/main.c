@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 17:09:57 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:28:01 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ void	ft_free(t_philo *first_philo)
 {
 	t_philo	*philo;
 	t_philo	*next;
+	t_info	*info;
 	char	*sem_meals_name;
 
-	free(first_philo->info);
+	info = first_philo->info;
 	philo = first_philo;
 	while (philo)
 	{
 		next = philo->next;
-		sem_meals_name = ft_strjoin("sem_philo_", ft_itoa(philo->id));
+		sem_meals_name = ft_philo_sem_meals_name(philo->id);
 		sem_unlink(sem_meals_name);
 		free(sem_meals_name);
 		sem_close(philo->sem_meals);
@@ -34,8 +35,9 @@ void	ft_free(t_philo *first_philo)
 	}
 	sem_unlink("sem_forks");
 	sem_unlink("sem_log");
-	sem_close(first_philo->info->sem_forks);
-	sem_close(first_philo->info->sem_log);
+	sem_close(info->sem_forks);
+	sem_close(info->sem_log);
+	free(info);
 }
 
 bool	ft_error(char *msg, t_philo *first_philo)

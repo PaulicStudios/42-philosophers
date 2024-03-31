@@ -96,8 +96,12 @@ t_info			*ft_parse_args(int argc, char **argv);
 //create_philos.c
 t_philo			*ft_create_philos(unsigned int nb_philo, t_info *info);
 
-//utils.c
+//nbr_utils.c
 unsigned int	ft_input_nbr(const char *str, t_info *info);
+
+//str_utils.c
+char			*ft_philo_sem_meals_name(unsigned int id);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 //time_utils.c
 unsigned int	ft_get_millis(void);
@@ -108,6 +112,5 @@ void			ft_stop(t_philo *philo, int exit_status);
 
 //ft_itoa.c
 char			*ft_itoa(int n);
-char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif
