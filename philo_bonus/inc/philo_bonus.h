@@ -29,10 +29,13 @@ struct s_philo
 {
 	unsigned int	id;
 	pid_t			process_id;
-	pthread_t		monitor_thread;
+	pthread_t		monitor_alive_thread;
+	pthread_t		monitor_meals_thread;
 	unsigned int	time_start_eating;
 	unsigned int	time_last_meal;
 	int				nbr_meals;
+	bool			finished_meals;
+	sem_t			*sem_meals;
 	t_philo			*next;
 	t_philo			*prev;
 	t_info			*info;
@@ -100,5 +103,9 @@ void			ft_wait_until(unsigned int time);
 
 //action_utils.c
 void			ft_stop(t_philo *philo, int exit_status);
+
+//ft_itoa.c
+char			*ft_itoa(int n);
+char			*ft_strjoin(char const *s1, char const *s2);
 
 #endif

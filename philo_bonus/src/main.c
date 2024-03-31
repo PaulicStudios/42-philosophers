@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 12:14:10 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 22:59:25 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:41:34 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ void	ft_free(t_philo *first_philo)
 {
 	t_philo	*philo;
 	t_philo	*next;
+	char	*sem_meals_name;
 
 	free(first_philo->info);
 	philo = first_philo;
 	while (philo)
 	{
 		next = philo->next;
+		sem_close(philo->sem_meals);
+		sem_meals_name = ft_strjoin("sem_philo_", ft_itoa(philo->id));
+		sem_unlink(sem_meals_name);
+		free(sem_meals_name);
 		free(philo);
 		philo = next;
 		if (philo == first_philo)
@@ -54,7 +59,7 @@ void	ft_join_threads(t_philo *first_philo)
 	philo = first_philo;
 	while (philo)
 	{
-		pthread_join(philo->monitor_thread, NULL);
+		pthread_join(philo->monitor_alive_thread, NULL);
 		philo = philo->next;
 		if (philo == first_philo)
 			break ;

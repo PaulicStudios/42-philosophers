@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 16:59:42 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 22:59:13 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:07:19 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ bool	ft_init_info(t_info *info)
 	info->stop = false;
 	sem_unlink("sem_forks");
 	sem_unlink("sem_log");
+	sem_unlink("sem_stop");
 	info->sem_forks = sem_open("sem_forks", O_CREAT, 0644, info->nb_philo);
 	if (info->sem_forks == SEM_FAILED)
 		return (ft_error("sem_open failed", info->first_philo), false);
 	info->sem_log = sem_open("sem_log", O_CREAT, 0644, 1);
 	if (info->sem_log == SEM_FAILED)
+		return (ft_error("sem_open failed", info->first_philo), false);
+	info->sem_stop = sem_open("sem_stop", O_CREAT, 0644, 1);
+	if (info->sem_stop == SEM_FAILED)
 		return (ft_error("sem_open failed", info->first_philo), false);
 	return (true);
 }

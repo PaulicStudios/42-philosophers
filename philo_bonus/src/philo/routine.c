@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 18:12:30 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/30 22:52:43 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:40:05 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool	ft_start_routines(t_info *info)
 			return (ft_error("fork failed", info->first_philo));
 		if (philo->process_id == 0)
 		{
+			sem_wait(philo->sem_meals);
 			ft_philo_loop(philo);
 			exit(EXIT_SUCCESS);
 		}
