@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 22:42:41 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 16:53:34 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:16:45 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_kill_all(t_philo *philo)
 {
 	while (philo)
 	{
+		sem_post(philo->sem_meals);
 		kill(philo->process_id, SIGKILL);
 		philo = philo->next;
 		if (philo == philo->info->first_philo)
@@ -41,7 +42,7 @@ void	*ft_monitor_meals(void *philo_void)
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_void;
-	usleep(200);
+	usleep(100);
 	sem_wait(philo->sem_meals);
 	sem_wait(philo->info->sem_stop);
 	philo->finished_meals = true;
@@ -60,11 +61,18 @@ void	*ft_monitor_alive(void *philo_void)
 	int		status;
 
 	philo = (t_philo *)philo_void;
+	sem_wait(philo->sem_meals);
 	waitpid(philo->process_id, &status, 0);
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == EXIT_FAILURE)
-			ft_kill_all(philo->info->first_philo);
+		{
+			sem_wait(philo->info->sem_stop);
+			if (!philo->info->stop)
+				ft_kill_all(philo->info->first_philo);
+			philo->info->stop = true;
+			sem_post(philo->info->sem_stop);
+		}
 	}
 	return (NULL);
 }

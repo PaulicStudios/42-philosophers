@@ -21,6 +21,8 @@
 # include <stdbool.h>
 # include <semaphore.h>
 # include <signal.h>
+# include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_philo	t_philo;
 typedef struct s_info	t_info;

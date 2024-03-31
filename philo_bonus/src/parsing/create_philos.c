@@ -6,7 +6,7 @@
 /*   By: pgrossma <pgrossma@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 19:20:28 by pgrossma          #+#    #+#             */
-/*   Updated: 2024/03/31 16:08:27 by pgrossma         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:18:42 by pgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	ft_init_philo_sem_meals(t_philo *philo)
 
 	sem_name = ft_strjoin("sem_philo_", ft_itoa(philo->id));
 	sem_unlink(sem_name);
-	philo->sem_meals = sem_open(sem_name, O_CREAT, 0644, 1);
+	philo->sem_meals = sem_open(sem_name, O_CREAT, 0644, 2);
 	free(sem_name);
 	if (philo->sem_meals == SEM_FAILED)
 		ft_error_exit("sem_open failed", philo->info->first_philo);
 }
 
 t_philo	*ft_default_philo(t_info *info, t_philo **first,
-							t_philo **prev, unsigned int millis)
+							t_philo **prev, unsigned int millis, unsigned int id)
 {
 	t_philo	*philo;
 
@@ -36,6 +36,7 @@ t_philo	*ft_default_philo(t_info *info, t_philo **first,
 		return (ft_error("malloc failed", *first), NULL);
 	if (*prev)
 		(*prev)->next = philo;
+	philo->id = id;
 	ft_init_philo_sem_meals(philo);
 	philo->time_last_meal = millis;
 	philo->nbr_meals = 0;
@@ -59,10 +60,9 @@ t_philo	*ft_create_philos(unsigned int nb_philo, t_info *info)
 	id = 0;
 	while (id++ < nb_philo)
 	{
-		philo = ft_default_philo(info, &first, &prev, millis);
+		philo = ft_default_philo(info, &first, &prev, millis, id);
 		if (!philo)
 			return (NULL);
-		philo->id = id;
 		prev = philo;
 	}
 	philo->next = first;
